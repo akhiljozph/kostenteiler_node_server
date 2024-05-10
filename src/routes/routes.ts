@@ -10,6 +10,10 @@ const routes = (app: Application) => {
         res.send('API for group creation');
     });
 
+    app.get("/api/v1/users", (req: Request, res: Response) => {
+        res.send('API for fetch all users');
+    });
+
 };
 
 export default routes;
