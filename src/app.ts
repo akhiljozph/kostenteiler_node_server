@@ -1,20 +1,22 @@
-import express, { Request, Response, Application } from 'express';
+import express, { Request, Response } from 'express';
 
 import routes from './routes/routes';
+import swaggerDocs from './swagger';
+import connect from './utils/connect';
 
-const swagger = require('./swagger.js');
+const app = express();
+const port = 8090;
 
-const app: Application = express();
-const port = process.env.PORT || 8000;
+swaggerDocs(app, port);
+
+app.listen(port, async () => {
+  console.log(`Server is Fired at http://localhost:${port}`);
+
+  await connect();
+
+  routes(app);
+});
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Kostenteiler!');
-});
-
-swagger(app);
-
-app.listen(port, () => {
-  console.log(`Server is Fired at http://localhost:${port}`);
-
-  routes(app);
 });
