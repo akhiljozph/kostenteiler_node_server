@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AnyZodObject } from "zod";
+import log from "../utils/logger";
 
 const validateResource = (schema: AnyZodObject) => (request: Request, response: Response, next: NextFunction) => {
     try {
@@ -10,7 +11,7 @@ const validateResource = (schema: AnyZodObject) => (request: Request, response: 
         });
         next();
     } catch (error: any) {
-        console.log("ValidateResourceRequestURL:", request.body);
+        log.error(`Error occurred in validateResource for the url '${request.url}'`);
         return response.status(400).send(error.errors);
     }
 }
