@@ -9,7 +9,6 @@ const routes = (app: Application) => {
     app.post("/api/v1/user", validateResource(createUserSchema), createUserHandler);
 
     app.post("/api/v1/group", (req: Request, res: Response) => {
-        console.log("Request for group - JJJAAASSSDDD", req);
         res.send('API for group creation');
     });
 
