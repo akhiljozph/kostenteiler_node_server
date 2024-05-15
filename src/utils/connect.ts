@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import config from '../../config/development/default';
+import config from '../../config/default';
 
 async function connect() {
     const dbUri = config.dbUri as string;

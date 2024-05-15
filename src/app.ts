@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 
-import routes from './routes/routes';
 import swaggerDocs from './swagger';
 import connect from './utils/connect';
 
@@ -9,12 +8,17 @@ const port = 8090;
 
 swaggerDocs(app, port);
 
+app.use(express.json());
+app.post('/', (req, res) => {
+  const { name } = req.body;
+
+  res.send(`Welcome ${name}`);
+})
+
 app.listen(port, async () => {
   console.log(`Server is Fired at http://localhost:${port}`);
 
   await connect();
-
-  routes(app);
 });
 
 app.get('/', (req: Request, res: Response) => {

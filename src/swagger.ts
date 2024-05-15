@@ -1,6 +1,7 @@
 import { Express, Request, Response } from "express";
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+
 import { version } from '../package.json';
 
 const options: swaggerJsdoc.Options = {
@@ -10,23 +11,23 @@ const options: swaggerJsdoc.Options = {
             version,
             description: 'API documentation for kostenteiler server.'
         },
-        // components: {
-        //     securitySchemas: {
-        //         bearerAuth: {
-        //             type: 'http',
-        //             scheme: 'bearer',
-        //             bearerFormat: 'JWT',
-        //         },
-        //     },
-        // },
-        // security: [
-        //     {
-        //         bearerAuth: [],
-        //     }
-        // ]
+        components: {
+            securitySchemas: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
+        security: [
+            {
+                bearerAuth: [],
+            }
+        ]
     },
     apis: [
-        './app.ts', './routes/*.ts'
+        './app.ts'
     ]
 };
 
