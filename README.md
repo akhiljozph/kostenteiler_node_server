@@ -35,6 +35,6 @@
 
 - ```gitignore```: Specifies the files and folders that should be ignored by Git.
 - ```env```: Contains environment-specific variables (should not be committed to the repository).
-- ```env.local```:  Contains environment-specific variables for development enviornment
+- ```env.local```:  Contains environment-specific variables for development environment
 - ```package.json```: Contains project metadata, dependencies, and scripts.
 - ```README.md```: Provides an overview of the project, instructions for installation, and usage information.
