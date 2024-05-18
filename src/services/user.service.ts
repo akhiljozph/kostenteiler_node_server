@@ -1,6 +1,8 @@
 import { omit } from "lodash";
+import bcrypt from "bcrypt";
 
 import UserModel, { UserDocument } from "../models/user.model";
+import config from '../../config/development/default';
 import log from "../utils/logger";
 
 export async function createUser(input: { dateOfBirth: string; email: string; fullName: string; gender: string; password: string; username: string; }) {
@@ -21,5 +23,12 @@ export async function validatePassword({ username, password } : { username: stri
         return false;
     }
 
-    return omit(user.toJSON(), "password");
+    const salt = await bcrypt.genSalt(config.saltWorkFactor);
+    const hash = await bcrypt.hashSync(password, salt);
+    
+    if (user.password === password) {
+        return omit(user.toJSON(), "password");
+    }
+
+    return false;
 }
