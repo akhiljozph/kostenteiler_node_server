@@ -12,3 +12,14 @@ export async function createUser(input: { dateOfBirth: string; email: string; fu
         throw new Error(error);
     }
 }
+
+export async function validatePassword({ username, password } : { username: string, password: string }) {
+
+    const user = await UserModel.findOne({ username });
+
+    if(!user) {
+        return false;
+    }
+
+    return omit(user.toJSON(), "password");
+}
