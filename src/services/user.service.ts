@@ -27,7 +27,7 @@ export async function validatePassword({ username, password } : { username: stri
     const hash = await bcrypt.hashSync(password, salt);
     
     if (user.password === password) {
-        return omit(user.toJSON(), "password");
+        return omit(user.toJSON(), "password", "__v");
     }
 
     return false;

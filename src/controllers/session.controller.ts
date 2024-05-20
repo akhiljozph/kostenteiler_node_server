@@ -10,5 +10,5 @@ export async function createLoginSessionHandler(request: Request, response: Resp
         return response.status(401).send("Invalid username or password.");
     }
 
-    return response.status(200).send("Login successful.");
+    return response.status(200).send({message: 'User login success.', user});
 }
