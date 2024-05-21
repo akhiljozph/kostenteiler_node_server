@@ -20,7 +20,7 @@ app.listen(port, async () => {
 });
 
 /**
- *  @openapi
+ *  @swagger
  *  '/':
  *  get:
  *     tags:
