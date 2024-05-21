@@ -14,7 +14,7 @@ const routes = (app: Application) => {
    *        post:
    *          tags:
    *          - Auth Controller
-   *          summary: Create a user account.
+   *          summary: Creates a valid login session.
    *          consumes:
    *            - application/json
    *          parameters:
