@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 
 import routes from "./routes/routes";
 import swaggerDocs from "./swagger";
@@ -10,6 +11,7 @@ const port = 8090;
 
 swaggerDocs(app, port);
 
+app.use(cors());
 app.use(express.json());
 app.listen(port, async () => {
   log.info(`Server is Fired at http://localhost:${port}`);

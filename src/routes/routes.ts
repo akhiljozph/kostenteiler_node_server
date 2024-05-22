@@ -7,6 +7,7 @@ import { createLoginSessionSchema } from "../schema/session.schema";
 import { createLoginSessionHandler } from "../controllers/session.controller";
 
 const routes = (app: Application) => {
+
   /**
    * @swagger
    *    paths:
@@ -14,7 +15,7 @@ const routes = (app: Application) => {
    *        post:
    *          tags:
    *          - Auth Controller
-   *          summary: Create a user account.
+   *          summary: Creates a valid login session.
    *          consumes:
    *            - application/json
    *          parameters:
@@ -34,10 +35,16 @@ const routes = (app: Application) => {
    *          responses:
    *            201:
    *              description: Created
-   *            409:
-   *              description: Conflict
+   *            400:
+   *              description: Bad Request
+   *            401:
+   *              description: Unauthorized
    *            404:
    *              description: Not Found
+   *            408:
+   *              description: Request Timeout
+   *            409:
+   *              description: Conflict
    *            500:
    *              description: Server Error
    */
@@ -100,11 +107,32 @@ const routes = (app: Application) => {
   /**
    * @swagger
    * paths:
-   *    /api/v2/user/{userId}:
+   *    /api/v1/user/{userId}:
    *      get:
    *        tags:
    *        - User Controller
-   *        summary: Get details of a specific user.
+   *        summary: Get details of a specific user (TODO).
+   *        parameters:
+   *          - in: path
+   *            name: userId
+   *            required: true
+   *            type: string
+   *        responses:
+   *          200:
+   *            description: Success
+   */
+  app.get("/api/v1/user/{userId}", (req: Request, res: Response) => {
+    res.send("API for fetching user details");
+  });
+
+  /**
+   * @swagger
+   * paths:
+   *    /api/v1/user/{userId}:
+   *      put:
+   *        tags:
+   *        - User Controller
+   *        summary: Update whole details of a specific user (TODO).
    *        parameters:
    *          - in: path
    *            name: userId
@@ -114,8 +142,44 @@ const routes = (app: Application) => {
    *          200:
    *            description: OK
    */
-  app.get("/api/v2/user/{userId}", (req: Request, res: Response) => {
-    res.send("API for fetching user details");
+  app.put("/api/v1/user/{userId}", (req: Request, res: Response) => {
+    res.send("API for updating specific user details");
+  });
+
+  /**
+   * @swagger
+   * paths:
+   *    /api/v1/user/{userId}:
+   *      patch:
+   *        tags:
+   *        - User Controller
+   *        summary: Update a specific user details (TODO).
+   *        parameters:
+   *          - in: path
+   *            name: userId
+   *            required: true
+   *            type: string
+   *        responses:
+   *          200:
+   *            description: OK
+   */
+  app.patch("/api/v1/user/{userId}", (req: Request, res: Response) => {
+    res.send("API for updating specific user details");
+  });
+
+  /**
+   * @swagger
+   * '/api/v1/user/{userId}':
+   *  delete:
+   *     tags:
+   *     - User Controller
+   *     summary: Delete a specific user (TODO).
+   *     responses:
+   *        200:
+   *        description: Success
+   */
+  app.delete("/api/v1/user/{userId}", (req: Request, res, Response) => {
+    res.send("API for deleting a specific user");
   });
 
   /**
@@ -124,9 +188,9 @@ const routes = (app: Application) => {
    *  get:
    *     tags:
    *     - User Controller
-   *     summary: Get details of all users.
+   *     summary: Get details of all users (TODO).
    *     responses:
-   *      200:
+   *        200:
    *        description: Success
    */
   app.get("/api/v1/users", (req: Request, res: Response) => {
