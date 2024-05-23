@@ -5,6 +5,7 @@ import { createUserSchema } from "../schema/user.schema";
 import { createUserHandler } from "../controllers/user.controller";
 import { createLoginSessionSchema } from "../schema/session.schema";
 import { createLoginSessionHandler } from "../controllers/session.controller";
+import log from "../utils/logger";
 
 const routes = (app: Application) => {
 
@@ -107,7 +108,7 @@ const routes = (app: Application) => {
   /**
    * @swagger
    * paths:
-   *    /api/v1/user/{userId}:
+   *    /api/v1/users/{userId}:
    *      get:
    *        tags:
    *        - User Controller
@@ -121,8 +122,8 @@ const routes = (app: Application) => {
    *          200:
    *            description: Success
    */
-  app.get("/api/v1/user/{userId}", (req: Request, res: Response) => {
-    res.send("API for fetching user details");
+  app.get("/api/v1/users/:userId", (req: Request, res: Response) => {
+    res.send("API for fetching specific user details");
   });
 
   /**
