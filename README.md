@@ -1,6 +1,5 @@
 ## Kostenteiler Server
 
-
 ### Explanation of the folder structure:
 
 - ```src```: Contains the main application source code.
