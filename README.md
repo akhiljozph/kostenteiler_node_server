@@ -1,5 +1,11 @@
 ## Kostenteiler Server
 
+This is the dedicated server for Kostenteiler which is an application designed to manage the daily expenses effectively.
+
+## Further Info
+
+This server is created with `express` `v4.18.2`.
+
 ### Explanation of the folder structure:
 
 - ```src```: Contains the main application source code.
